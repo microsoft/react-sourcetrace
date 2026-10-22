@@ -1,6 +1,6 @@
 {
   "name": "react-sourcetrace",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Opt-in JSX source locations and committed React component ancestry for DOM elements.",
   "author": "Marat Abdullin <marata@microsoft.com>",
