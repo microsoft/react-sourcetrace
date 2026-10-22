@@ -83,6 +83,7 @@
     "publish:check": "npm run check && npm run test:package",
     "publish:dry-run": "npm publish --dry-run",
     "publish:npm": "npm publish",
+    "release:github": "node -e \"require('node:child_process').execFileSync('gh', ['release', 'create', 'v' + require('./package.json').version, '--repo', 'microsoft/react-sourcetrace', '--verify-tag', '--generate-notes'], { stdio: 'inherit' })\"",
     "version:bump": "npm version --no-git-tag-version"
   },
   "dependencies": {

@@ -252,6 +252,7 @@ selects classic JSX. Browser tests use five loopback ports starting at
 | `npm run pack`                  | Build and create a local package tarball            |
 | `npm run publish:dry-run`       | Validate the publish operation without uploading    |
 | `npm run publish:npm`           | Validate and publish to the public npm registry     |
+| `npm run release:github`        | Publish a GitHub release and trigger npm publishing |
 
 The version target also accepts `minor`, `major`, or `prerelease --preid=next`.
 Packing always builds first; publishing always runs the release checks first.
@@ -260,6 +261,11 @@ CI checks pull requests and pushes to `main` on Linux and Windows. The publishin
 action runs when a GitHub release is published, requires its tag to match
 `v<package-version>`, and uses npm trusted publishing. Prereleases use the `next`
 dist-tag; stable releases use `latest`.
+
+After pushing the `v<package-version>` tag, run `npm run release:github` from an
+authenticated GitHub CLI session. The command reads the version from
+`package.json`, requires that tag to already exist on GitHub, and generates
+release notes automatically.
 
 Own the npm package and configure a trusted publisher for repository
 `microsoft/react-sourcetrace`, workflow `publish.yml`, before using the publishing
