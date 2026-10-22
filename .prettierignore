@@ -1,0 +1,8 @@
+node_modules
+dist
+demo-dist
+test-results
+playwright-report
+.generated
+pnpm-lock.yaml
+.package-check

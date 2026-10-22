@@ -426,3 +426,16 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# react-sourcetrace
+dist/
+demo-dist/
+test-results/
+playwright-report/
+.generated/
+*.tsbuildinfo
+.package-check/
+.npmrc
+*.tgz
+.env
+.env.*

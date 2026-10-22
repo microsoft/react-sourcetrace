@@ -1,0 +1,127 @@
+{
+  "name": "react-sourcetrace",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Opt-in JSX source locations and committed React component ancestry for DOM elements.",
+  "author": "Marat Abdullin <marata@microsoft.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microsoft/react-sourcetrace.git"
+  },
+  "homepage": "https://github.com/microsoft/react-sourcetrace#readme",
+  "bugs": {
+    "url": "https://github.com/microsoft/react-sourcetrace/issues"
+  },
+  "keywords": [
+    "react",
+    "jsx",
+    "sourcetrace",
+    "debugging",
+    "playwright",
+    "vite"
+  ],
+  "main": "./dist/runtime.js",
+  "types": "./dist/runtime.d.ts",
+  "packageManager": "pnpm@12.4.1",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/runtime.d.ts",
+      "default": "./dist/runtime.js"
+    },
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "default": "./dist/runtime.js"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "default": "./dist/vite.js"
+    },
+    "./typescript": {
+      "types": "./dist/typescript.d.ts",
+      "default": "./dist/typescript.js"
+    },
+    "./loader": {
+      "types": "./dist/loader.d.ts",
+      "default": "./dist/loader.js"
+    },
+    "./playwright": {
+      "types": "./dist/playwright.d.ts",
+      "default": "./dist/playwright.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
+    "dev": "npm run build && vite --host 127.0.0.1",
+    "build:demo": "npm run build && vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:unit": "node --import tsx --test tests/unit/*.test.ts",
+    "test:unit:ts54": "node --import tsx --import ./tests/typescript54.mjs --test tests/unit/*.test.ts",
+    "test:e2e": "npm run build && playwright test",
+    "test:package": "node -e \"require('node:fs').mkdirSync('.package-check', { recursive: true })\" && npm pack --pack-destination .package-check --quiet && node --import tsx --test tests/package.test.ts",
+    "test": "npm run test:unit && npm run test:unit:ts54 && npm run test:e2e",
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm test",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run publish:check",
+    "pack": "npm pack",
+    "publish:check": "npm run check && npm run test:package",
+    "publish:dry-run": "npm publish --dry-run",
+    "publish:npm": "npm publish",
+    "version:bump": "npm version --no-git-tag-version"
+  },
+  "dependencies": {
+    "magic-string": "1.4.3"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.64.1",
+    "react": "~18.3.1 || ^19.0.0",
+    "typescript": ">=5.4 <7",
+    "vite": "^6.0.0 || ^7.0.0 || ^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@playwright/test": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@fluentui/react-jsx-runtime": "9.4.6",
+    "@fluentui/react-utilities": "9.26.7",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@rspack/core": "1.7.11",
+    "@types/node": "^24.0.0",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "6.1.2",
+    "eslint": "10.12.0",
+    "prettier": "3.9.10",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react19": "npm:react@19.3.1",
+    "react-dom19": "npm:react-dom@19.3.1",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "typescript54": "npm:typescript@5.4.5",
+    "typescript-eslint": "8.71.0",
+    "vite": "8.3.4"
+  }
+}

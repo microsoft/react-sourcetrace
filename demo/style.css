@@ -1,0 +1,15 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+main {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 40rem;
+}
+
+button {
+  padding: 0.6rem;
+  text-align: left;
+}
